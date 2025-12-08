@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Mountain, Sparkles, Globe, Shield, Zap, BookOpen, Clock, TrendingUp, CheckCircle2, Volume2, VolumeX } from "lucide-react";
+import Quiz from "./components/Quiz";
 
 type Question = {
   question: string;
@@ -333,271 +334,304 @@ export default function Home() {
 
   const getVisaStatus = () => {
     const percentage = (score / questions.length) * 100;
-    if (percentage >= 75) return { status: "APPROVED", color: "text-green-500", message: "Your vibration is high enough. Welcome to Agartha!" };
-    if (percentage >= 50) return { status: "PENDING", color: "text-yellow-500", message: "Your consciousness needs more elevation. Meditate and try again." };
-    return { status: "DENIED", color: "text-red-500", message: "Your frequency is too low. Study the teachings and return." };
+    if (percentage >= 75) return {
+      status: "APPROVED",
+      color: "text-green-500",
+      message: "Your vibration is high enough. Welcome to Agartha!"
+    };
+    if (percentage >= 50) return {
+      status: "PENDING",
+      color: "text-yellow-500",
+      message: "Your consciousness needs more elevation. Meditate and try again."
+    };
+    return {
+      status: "DENIED",
+      color: "text-red-500",
+      message: "Your frequency is too low. Study the teachings and return."
+    };
   };
 
   if (!started) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 relative overflow-hidden">
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(147,51,234,0.1),transparent_50%)]"></div>
-        </div>
+        <div
+            className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 relative overflow-hidden">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_50%)]"></div>
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(147,51,234,0.1),transparent_50%)]"></div>
+          </div>
 
-        <div className="container mx-auto px-4 py-12 max-w-5xl relative z-10">
-          {/* Header */}
-          <div className="text-center mb-8">
-            {/* Ornate Header */}
-            <div className="mb-8">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-                <Mountain className="w-8 h-8 text-blue-400" />
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-              </div>
+          <div className="container mx-auto px-4 py-12 max-w-5xl relative z-10">
+            {/* Header */}
+            <div className="text-center mb-8">
+              {/* Ornate Header */}
+              <div className="mb-8">
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+                  <Mountain className="w-8 h-8 text-blue-400"/>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+                </div>
 
-              <div className="relative inline-block">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-20 blur-2xl"></div>
-                <h1 className="relative text-6xl md:text-7xl font-bold font-[family-name:var(--font-cinzel)] mb-2">
-                  <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-300 bg-clip-text text-transparent">
+                <div className="relative inline-block">
+                  <div
+                      className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-20 blur-2xl"></div>
+                  <h1 className="relative text-6xl md:text-7xl font-bold font-[family-name:var(--font-cinzel)] mb-2">
+                  <span
+                      className="bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-300 bg-clip-text text-transparent">
                     AGARTHA
                   </span>
-                </h1>
-              </div>
-
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <Sparkles className="w-4 h-4 text-cyan-400" />
-                <h2 className="text-2xl font-[family-name:var(--font-cinzel)] text-blue-200 tracking-wider">
-                  CITIZENSHIP EXAMINATION
-                </h2>
-                <Sparkles className="w-4 h-4 text-cyan-400" />
-              </div>
-
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="h-px w-16 bg-gradient-to-r from-transparent to-blue-400"></div>
-                <p className="text-sm text-blue-300 font-[family-name:var(--font-geist-mono)] tracking-widest">
-                  THE INNER EARTH • BENEATH THE SURFACE • EST. 1871
-                </p>
-                <div className="h-px w-16 bg-gradient-to-l from-transparent to-blue-400"></div>
-              </div>
-
-              <div className="flex items-center justify-center gap-6 text-xs text-blue-400/80">
-                <div className="flex items-center gap-2">
-                  <Globe className="w-4 h-4" />
-                  <span>Hollow Earth Division</span>
+                  </h1>
                 </div>
-                <div className="w-px h-4 bg-blue-400/30"></div>
-                <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4" />
-                  <span>Department of Portal Access</span>
-                </div>
-              </div>
 
-              <div className="flex items-center justify-center gap-4 mt-6">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
-                <Zap className="w-6 h-6 text-purple-400 animate-pulse" />
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <Sparkles className="w-4 h-4 text-cyan-400"/>
+                  <h2 className="text-2xl font-[family-name:var(--font-cinzel)] text-blue-200 tracking-wider">
+                    CITIZENSHIP EXAMINATION
+                  </h2>
+                  <Sparkles className="w-4 h-4 text-cyan-400"/>
+                </div>
+
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-blue-400"></div>
+                  <p className="text-sm text-blue-300 font-[family-name:var(--font-geist-mono)] tracking-widest">
+                    THE INNER EARTH • BENEATH THE SURFACE • EST. 1871
+                  </p>
+                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-blue-400"></div>
+                </div>
+
+                <div className="flex items-center justify-center gap-6 text-xs text-blue-400/80">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-4 h-4"/>
+                    <span>Hollow Earth Division</span>
+                  </div>
+                  <div className="w-px h-4 bg-blue-400/30"></div>
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-4 h-4"/>
+                    <span>Department of Portal Access</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-4 mt-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+                  <Zap className="w-6 h-6 text-purple-400 animate-pulse"/>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Video Section */}
-          <div className="mb-8 bg-slate-900/50 rounded-xl shadow-2xl border border-blue-500/30 overflow-hidden backdrop-blur-sm">
-            <div className="relative aspect-video bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
-              {/* Overlay content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-4 p-8 z-10">
-                  <Mountain className="w-16 h-16 text-cyan-400 mx-auto animate-pulse" />
-                  <div className="text-3xl font-bold text-white font-[family-name:var(--font-cinzel)]">
-                    Journey to the Inner Earth
+            {/* Video Section */}
+            <div
+                className="mb-8 bg-slate-900/50 rounded-xl shadow-2xl border border-blue-500/30 overflow-hidden backdrop-blur-sm">
+              <div className="relative aspect-video bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
+                {/* Overlay content */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-4 p-8 z-10">
+                    <Mountain className="w-16 h-16 text-cyan-400 mx-auto animate-pulse"/>
+                    <div className="text-3xl font-bold text-white font-[family-name:var(--font-cinzel)]">
+                      Journey to the Inner Earth
+                    </div>
+                    <div className="text-blue-200 max-w-md mx-auto text-sm">
+                      Experience the legendary crystal cities beneath our world. Watch as seekers discover
+                      the hidden entrances and unlock the portal through knowledge.
+                    </div>
+                    <div className="flex justify-center gap-4 pt-4">
+                      <button
+                          className="group px-6 py-3 bg-blue-500/30 hover:bg-blue-500/50 rounded-full text-blue-100 text-sm backdrop-blur-sm border border-blue-300/30 hover:border-blue-300/60 transition-all z-20 flex items-center gap-2"
+                          onClick={() => setMutedState(!muted)}
+                      >
+                        {muted ? (
+                            <Volume2 className="w-4 h-4"/>
+                        ) : (
+                            <VolumeX className="w-4 h-4"/>
+                        )}
+                        <span>{muted ? "Listen In" : "Mute"}</span>
+                      </button>
+                    </div>
                   </div>
-                  <div className="text-blue-200 max-w-md mx-auto text-sm">
-                    Experience the legendary crystal cities beneath our world. Watch as seekers discover
-                    the hidden entrances and unlock the portal through knowledge.
+                </div>
+                <div className="absolute w-full h-full bg-black/60"></div>
+                <video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                >
+                  <source src="/agartha.mp4" type="video/mp4"/>
+                </video>
+                <audio muted={muted} loop id={"music"}>
+                  <source src="/agartha.mp3" type="audio/mpeg"/>
+                </audio>
+              </div>
+            </div>
+
+            {/* Main Card */}
+            <div
+                className="bg-slate-900/80 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-500/30 overflow-hidden">
+              {/* Header Badge */}
+              <div
+                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-8 py-6 relative overflow-hidden">
+                <div
+                    className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+                <div className="flex items-center justify-between text-white relative">
+                  <div>
+                    <div className="text-sm font-semibold uppercase tracking-wider opacity-90 flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4"/>
+                      <span>Official Assessment</span>
+                    </div>
+                    <div className="text-2xl font-bold mt-1 font-[family-name:var(--font-cinzel)]">Entry Qualification
+                      Quiz
+                    </div>
                   </div>
-                  <div className="flex justify-center gap-4 pt-4">
+                  <div className="text-right">
+                    <div className="text-sm opacity-90">Questions</div>
+                    <div className="text-3xl font-bold">15</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-8">
+                <div className="space-y-6">
+                  {/* Introduction */}
+                  <div className="prose prose-slate max-w-none">
+                    <p className="text-lg text-blue-100 leading-relaxed">
+                      Welcome to the official Agartha citizenship examination. This assessment evaluates your
+                      knowledge of our civilization's history, culture, and entry protocols.
+                    </p>
+                  </div>
+
+                  {/* Info Boxes */}
+                  <div className="grid md:grid-cols-2 gap-4 my-8">
+                    <div
+                        className="border border-blue-500/30 rounded-lg p-5 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 hover:border-blue-400/50 transition-all backdrop-blur-sm">
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1"/>
+                        <div>
+                          <div className="font-semibold text-blue-200 mb-1">Duration</div>
+                          <div className="text-sm text-blue-300/80">Approximately 10 minutes</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                        className="border border-purple-500/30 rounded-lg p-5 bg-gradient-to-br from-purple-950/50 to-pink-950/50 hover:border-purple-400/50 transition-all backdrop-blur-sm">
+                      <div className="flex items-start gap-3">
+                        <TrendingUp className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1"/>
+                        <div>
+                          <div className="font-semibold text-purple-200 mb-1">Passing Score</div>
+                          <div className="text-sm text-purple-300/80">75% or higher required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                        className="border border-cyan-500/30 rounded-lg p-5 bg-gradient-to-br from-cyan-950/50 to-teal-950/50 hover:border-cyan-400/50 transition-all backdrop-blur-sm">
+                      <div className="flex items-start gap-3">
+                        <BookOpen className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1"/>
+                        <div>
+                          <div className="font-semibold text-cyan-200 mb-1">Topics Covered</div>
+                          <div className="text-sm text-cyan-300/80">History, culture, and protocols</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                        className="border border-indigo-500/30 rounded-lg p-5 bg-gradient-to-br from-indigo-950/50 to-blue-950/50 hover:border-indigo-400/50 transition-all backdrop-blur-sm">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-indigo-400 flex-shrink-0 mt-1"/>
+                        <div>
+                          <div className="font-semibold text-indigo-200 mb-1">Format</div>
+                          <div className="text-sm text-indigo-300/80">Multiple choice with explanations</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Instructions */}
+                  <div className="bg-blue-950/30 border border-blue-500/30 rounded-lg p-6 backdrop-blur-sm">
+                    <h3 className="font-semibold text-blue-200 mb-3 flex items-center gap-2 font-[family-name:var(--font-cinzel)]">
+                      <BookOpen className="w-5 h-5"/>
+                      <span>Before You Begin</span>
+                    </h3>
+                    <ul className="space-y-2 text-sm text-blue-300/90">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"/>
+                        <span>Read each question carefully before selecting your answer</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"/>
+                        <span>You will receive immediate feedback after each response</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"/>
+                        <span>Review all explanations to deepen your understanding</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"/>
+                        <span>Your final score will determine your eligibility status</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Subtle humor hint */}
+                  <div
+                      className="text-center text-sm text-blue-300/70 italic border-t border-b border-blue-500/20 py-3">
+                    <Sparkles className="w-4 h-4 inline-block mr-2 text-cyan-400"/>
+                    "Knowledge is the key that unlocks the portal." - The Gatekeeper
+                    <Sparkles className="w-4 h-4 inline-block ml-2 text-cyan-400"/>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="pt-4">
                     <button
-                      className="group px-6 py-3 bg-blue-500/30 hover:bg-blue-500/50 rounded-full text-blue-100 text-sm backdrop-blur-sm border border-blue-300/30 hover:border-blue-300/60 transition-all z-20 flex items-center gap-2"
-                      onClick={() => setMutedState(!muted)}
+                        onClick={() => setStarted(true)}
+                        className="group w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] font-[family-name:var(--font-cinzel)] flex items-center justify-center gap-2"
                     >
-                      {muted ? (
-                        <Volume2 className="w-4 h-4" />
-                      ) : (
-                        <VolumeX className="w-4 h-4" />
-                      )}
-                      <span>{muted ? "Listen In" : "Mute"}</span>
+                      <span>Begin Assessment</span>
+                      <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform"/>
                     </button>
                   </div>
-                </div>
-              </div>
-              <div className="absolute w-full h-full bg-black/60"></div>
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                <source src="/agartha.mp4" type="video/mp4" />
-              </video>
-              <audio muted={muted} loop id={"music"}>
-                <source src="/agartha.mp3" type="audio/mpeg" />
-              </audio>
-            </div>
-          </div>
 
-          {/* Main Card */}
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-500/30 overflow-hidden">
-            {/* Header Badge */}
-            <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-8 py-6 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-              <div className="flex items-center justify-between text-white relative">
-                <div>
-                  <div className="text-sm font-semibold uppercase tracking-wider opacity-90 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Official Assessment</span>
+                  {/* Footer note */}
+                  <div className="text-center pt-4">
+                    <p className="text-xs text-blue-400/60">
+                      By proceeding, you acknowledge your interest in alternative geography and internet lore.
+                    </p>
                   </div>
-                  <div className="text-2xl font-bold mt-1 font-[family-name:var(--font-cinzel)]">Entry Qualification Quiz</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm opacity-90">Questions</div>
-                  <div className="text-3xl font-bold">15</div>
                 </div>
               </div>
             </div>
 
-            {/* Content */}
-            <div className="p-8">
-              <div className="space-y-6">
-                {/* Introduction */}
-                <div className="prose prose-slate max-w-none">
-                  <p className="text-lg text-blue-100 leading-relaxed">
-                    Welcome to the official Agartha citizenship examination. This assessment evaluates your
-                    knowledge of our civilization's history, culture, and entry protocols.
-                  </p>
-                </div>
-
-                {/* Info Boxes */}
-                <div className="grid md:grid-cols-2 gap-4 my-8">
-                  <div className="border border-blue-500/30 rounded-lg p-5 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 hover:border-blue-400/50 transition-all backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
-                      <div>
-                        <div className="font-semibold text-blue-200 mb-1">Duration</div>
-                        <div className="text-sm text-blue-300/80">Approximately 10 minutes</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border border-purple-500/30 rounded-lg p-5 bg-gradient-to-br from-purple-950/50 to-pink-950/50 hover:border-purple-400/50 transition-all backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                      <TrendingUp className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
-                      <div>
-                        <div className="font-semibold text-purple-200 mb-1">Passing Score</div>
-                        <div className="text-sm text-purple-300/80">75% or higher required</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border border-cyan-500/30 rounded-lg p-5 bg-gradient-to-br from-cyan-950/50 to-teal-950/50 hover:border-cyan-400/50 transition-all backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                      <BookOpen className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
-                      <div>
-                        <div className="font-semibold text-cyan-200 mb-1">Topics Covered</div>
-                        <div className="text-sm text-cyan-300/80">History, culture, and protocols</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border border-indigo-500/30 rounded-lg p-5 bg-gradient-to-br from-indigo-950/50 to-blue-950/50 hover:border-indigo-400/50 transition-all backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-indigo-400 flex-shrink-0 mt-1" />
-                      <div>
-                        <div className="font-semibold text-indigo-200 mb-1">Format</div>
-                        <div className="text-sm text-indigo-300/80">Multiple choice with explanations</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Instructions */}
-                <div className="bg-blue-950/30 border border-blue-500/30 rounded-lg p-6 backdrop-blur-sm">
-                  <h3 className="font-semibold text-blue-200 mb-3 flex items-center gap-2 font-[family-name:var(--font-cinzel)]">
-                    <BookOpen className="w-5 h-5" />
-                    <span>Before You Begin</span>
-                  </h3>
-                  <ul className="space-y-2 text-sm text-blue-300/90">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                      <span>Read each question carefully before selecting your answer</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                      <span>You will receive immediate feedback after each response</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                      <span>Review all explanations to deepen your understanding</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                      <span>Your final score will determine your eligibility status</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Subtle humor hint */}
-                <div className="text-center text-sm text-blue-300/70 italic border-t border-b border-blue-500/20 py-3">
-                  <Sparkles className="w-4 h-4 inline-block mr-2 text-cyan-400" />
-                  "Knowledge is the key that unlocks the portal." - The Gatekeeper
-                  <Sparkles className="w-4 h-4 inline-block ml-2 text-cyan-400" />
-                </div>
-
-                {/* CTA Button */}
-                <div className="pt-4">
-                  <button
-                    onClick={() => setStarted(true)}
-                    className="group w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] font-[family-name:var(--font-cinzel)] flex items-center justify-center gap-2"
-                  >
-                    <span>Begin Assessment</span>
-                    <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                  </button>
-                </div>
-
-                {/* Footer note */}
-                <div className="text-center pt-4">
-                  <p className="text-xs text-blue-400/60">
-                    By proceeding, you acknowledge your interest in alternative geography and internet lore.
-                  </p>
-                </div>
+            {/* Trust badges - subtle humor */}
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-4 text-xs">
+              <div
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg">
+                <Shield className="w-4 h-4 text-blue-400"/>
+                <span className="text-blue-200 font-medium">Secure Portal</span>
               </div>
-            </div>
-          </div>
-
-          {/* Trust badges - subtle humor */}
-          <div className="mt-8 flex flex-wrap justify-center items-center gap-4 text-xs">
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg">
-              <Shield className="w-4 h-4 text-blue-400" />
-              <span className="text-blue-200 font-medium">Secure Portal</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-purple-500/30 shadow-lg">
-              <CheckCircle2 className="w-4 h-4 text-purple-400" />
-              <span className="text-purple-200 font-medium">Verified by The Sovereign Pontiff</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-indigo-500/30 shadow-lg">
-              <Zap className="w-4 h-4 text-indigo-400" />
-              <span className="text-indigo-200 font-medium">Powered by Vril</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-cyan-500/30 shadow-lg">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-200 font-medium">Crystal Network Certified</span>
+              <div
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-purple-500/30 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-purple-400"/>
+                <span className="text-purple-200 font-medium">Verified by The Sovereign Pontiff</span>
+              </div>
+              <div
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-indigo-500/30 shadow-lg">
+                <Zap className="w-4 h-4 text-indigo-400"/>
+                <span className="text-indigo-200 font-medium">Powered by Vril</span>
+              </div>
+              <div
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-full border border-cyan-500/30 shadow-lg">
+                <Sparkles className="w-4 h-4 text-cyan-400"/>
+                <span className="text-cyan-200 font-medium">Crystal Network Certified</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 
@@ -606,269 +640,244 @@ export default function Home() {
     const percentage = Math.round((score / questions.length) * 100);
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">
-              {visaStatus.status === "APPROVED" ? "🎉" : visaStatus.status === "PENDING" ? "📋" : "❌"}
-            </div>
-            <h1 className="text-4xl font-bold text-slate-900 mb-2">
-              Assessment Complete
-            </h1>
-            <p className="text-slate-600">Your citizenship application has been reviewed</p>
+        <div
+            className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 relative overflow-hidden">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_50%)]"></div>
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(147,51,234,0.1),transparent_50%)]"></div>
           </div>
 
-          {/* Results Card */}
-          <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-            {/* Score Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-8 text-center">
-              <div className="text-white/80 text-sm font-semibold uppercase tracking-wider mb-2">
-                Final Score
+          <div className="container mx-auto px-4 py-12 max-w-4xl relative z-10">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+                <Mountain className="w-8 h-8 text-blue-400"/>
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
               </div>
-              <div className="text-7xl font-bold text-white mb-2">
-                {percentage}%
+              <div className="text-6xl mb-4">
+                {visaStatus.status === "APPROVED" ? "✨" : visaStatus.status === "PENDING" ? "🔮" : "⛔"}
               </div>
-              <div className="text-2xl text-white/90">
-                {score} out of {questions.length} correct
+              <h1 className="text-4xl font-bold font-[family-name:var(--font-cinzel)] mb-2">
+              <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-300 bg-clip-text text-transparent">
+                Assessment Complete
+              </span>
+              </h1>
+              <p className="text-blue-300">Your citizenship application has been reviewed by The Gatekeeper</p>
+            </div>
+
+            {/* Results Card */}
+            <div
+                className="bg-slate-900/80 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-500/30 overflow-hidden">
+              {/* Score Header */}
+              <div
+                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-8 py-8 text-center relative overflow-hidden">
+                <div
+                    className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+                <div className="relative">
+                  <div
+                      className="flex items-center justify-center gap-2 text-white/80 text-sm font-semibold uppercase tracking-wider mb-2">
+                    <Sparkles className="w-4 h-4"/>
+                    <span>Final Score</span>
+                    <Sparkles className="w-4 h-4"/>
+                  </div>
+                  <div className="text-7xl font-bold text-white mb-2 font-[family-name:var(--font-cinzel)]">
+                    {percentage}%
+                  </div>
+                  <div className="text-2xl text-white/90">
+                    {score} out of {questions.length} correct
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Section */}
+              <div className="p-8">
+                <div className={`text-center py-6 rounded-lg mb-6 border-2 backdrop-blur-sm relative overflow-hidden ${
+                    visaStatus.status === "APPROVED" ? "bg-green-950/40 border-green-400/50" :
+                        visaStatus.status === "PENDING" ? "bg-yellow-950/40 border-yellow-400/50" :
+                            "bg-red-950/40 border-red-400/50"
+                }`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
+                  <div className="relative">
+                    <div className={`text-3xl font-bold mb-2 font-[family-name:var(--font-cinzel)] ${
+                        visaStatus.status === "APPROVED" ? "text-green-300" :
+                            visaStatus.status === "PENDING" ? "text-yellow-300" :
+                                "text-red-300"
+                    }`}>
+                      APPLICATION {visaStatus.status}
+                    </div>
+                    <div className={`text-lg ${
+                        visaStatus.status === "APPROVED" ? "text-green-200" :
+                            visaStatus.status === "PENDING" ? "text-yellow-200" :
+                                "text-red-200"
+                    }`}>
+                      {visaStatus.message}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Detailed Messages */}
+                {visaStatus.status === "APPROVED" && (
+                    <div
+                        className="space-y-4 bg-gradient-to-br from-green-950/30 to-emerald-950/30 border border-green-400/30 rounded-lg p-6 backdrop-blur-sm">
+                      <div className="text-center mb-4">
+                        <div className="text-4xl mb-2">✨</div>
+                        <h3 className="text-2xl font-bold text-green-300 mb-2 font-[family-name:var(--font-cinzel)]">Welcome
+                          to Agartha!</h3>
+                        <p className="text-green-200 font-semibold">You have demonstrated exceptional knowledge of our
+                          civilization.</p>
+                      </div>
+
+                      <div
+                          className="bg-slate-900/60 rounded-lg p-4 text-sm text-blue-200 space-y-2 border border-green-500/20">
+                        <p>
+                          <strong className="text-green-300">The Gatekeeper</strong> (Charlie Kirk, in his Ashtar Sheran
+                          form with glowing blue eyes)
+                          has reviewed your application and grants you passage through the White Monster Energy portal.
+                        </p>
+                        <p>
+                          Listen to the EDM remix of "Down Under" as you descend through the tunnel networks.
+                          The crystal cities await, where <strong className="text-cyan-300">The Sovereign
+                          Pontiff</strong> rules, where Vril energy
+                          flows freely, and where Admiral Byrd's alleged visions become your reality.
+                        </p>
+                        <p className="italic text-green-300/80 text-xs pt-2 flex items-center justify-center gap-2">
+                          <Sparkles className="w-3 h-3"/>
+                          "For Agartha!" - Traditional greeting among citizens of the inner world
+                          <Sparkles className="w-3 h-3"/>
+                        </p>
+                      </div>
+
+                      <div className="text-center text-xs text-green-400/70 italic">
+                        (Disclaimer: This is satire based on internet meme culture and conspiracy theory lore)
+                      </div>
+                    </div>
+                )}
+
+                {visaStatus.status === "PENDING" && (
+                    <div
+                        className="bg-gradient-to-br from-yellow-950/30 to-amber-950/30 border border-yellow-400/30 rounded-lg p-6 backdrop-blur-sm">
+                      <h3 className="text-xl font-bold text-yellow-300 mb-3 font-[family-name:var(--font-cinzel)] flex items-center gap-2">
+                        <BookOpen className="w-5 h-5"/>
+                        Additional Study Recommended
+                      </h3>
+                      <p className="text-yellow-200 mb-4">
+                        Your knowledge shows promise, but further understanding is required before entry can be granted.
+                      </p>
+                      <div
+                          className="text-sm text-yellow-100/90 space-y-2 bg-slate-900/60 rounded-lg p-4 border border-yellow-500/20">
+                        <p className="flex items-start gap-2">
+                          <Sparkles className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0"/>
+                          <span>Review the teachings of Alexandre Saint-Yves d'Alveydre's astral travels</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Sparkles className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0"/>
+                          <span>Study the Thule Society's historical research (for academic purposes only)</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Sparkles className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0"/>
+                          <span>Contemplate the symbolic meaning of the White Monster Energy portal</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <Sparkles className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0"/>
+                          <span>Understand Charlie Kirk's transformation into the blue-eyed Gatekeeper</span>
+                        </p>
+                      </div>
+                    </div>
+                )}
+
+                {visaStatus.status === "DENIED" && (
+                    <div
+                        className="bg-gradient-to-br from-red-950/30 to-rose-950/30 border border-red-400/30 rounded-lg p-6 backdrop-blur-sm">
+                      <h3 className="text-xl font-bold text-red-300 mb-3 font-[family-name:var(--font-cinzel)] flex items-center gap-2">
+                        <Shield className="w-5 h-5"/>
+                        Application Denied
+                      </h3>
+                      <p className="text-red-200 mb-4 bg-slate-900/60 rounded-lg p-4 border border-red-500/20">
+                        Unfortunately, your current knowledge level does not meet the requirements for citizenship.
+                        <strong className="block mt-2 text-red-300">The Gatekeeper has spoken.</strong>
+                      </p>
+                      <p className="text-sm text-red-100/90 bg-slate-900/60 rounded-lg p-4 border border-red-500/20">
+                        We encourage you to learn more about hollow earth mythology, occult history, and the viral
+                        TikTok lore before reapplying. Your journey to understanding the internet's most elaborate
+                        inside joke continues!
+                      </p>
+                    </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex gap-4 mt-8">
+                  <button
+                      onClick={resetQuiz}
+                      className="flex-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] font-[family-name:var(--font-cinzel)] flex items-center justify-center gap-2"
+                  >
+                    <Sparkles className="w-5 h-5"/>
+                    <span>Take Quiz Again</span>
+                  </button>
+                </div>
+
+                {/* Stats Breakdown */}
+                <div className="mt-8 pt-8 border-t border-blue-500/30">
+                  <h3 className="text-lg font-semibold text-blue-200 mb-4 font-[family-name:var(--font-cinzel)] flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-cyan-400"/>
+                    Performance Breakdown
+                  </h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div
+                        className="text-center p-4 bg-slate-900/60 rounded-lg border border-green-500/30 backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-green-400">{score}</div>
+                      <div className="text-xs text-green-300/80 mt-1">Correct</div>
+                    </div>
+                    <div
+                        className="text-center p-4 bg-slate-900/60 rounded-lg border border-red-500/30 backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-red-400">{questions.length - score}</div>
+                      <div className="text-xs text-red-300/80 mt-1">Incorrect</div>
+                    </div>
+                    <div
+                        className="text-center p-4 bg-slate-900/60 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-blue-400">{percentage}%</div>
+                      <div className="text-xs text-blue-300/80 mt-1">Accuracy</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Status Section */}
-            <div className="p-8">
-              <div className={`text-center py-6 rounded-lg mb-6 ${
-                visaStatus.status === "APPROVED" ? "bg-green-50 border-2 border-green-200" :
-                visaStatus.status === "PENDING" ? "bg-yellow-50 border-2 border-yellow-200" :
-                "bg-red-50 border-2 border-red-200"
-              }`}>
-                <div className={`text-3xl font-bold mb-2 ${
-                  visaStatus.status === "APPROVED" ? "text-green-700" :
-                  visaStatus.status === "PENDING" ? "text-yellow-700" :
-                  "text-red-700"
-                }`}>
-                  APPLICATION {visaStatus.status}
-                </div>
-                <div className={`text-lg ${
-                  visaStatus.status === "APPROVED" ? "text-green-600" :
-                  visaStatus.status === "PENDING" ? "text-yellow-600" :
-                  "text-red-600"
-                }`}>
-                  {visaStatus.message}
-                </div>
+            {/* Footer */}
+            <div className="text-center mt-8 space-y-2">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
+                <Sparkles className="w-4 h-4 text-cyan-400/60"/>
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
               </div>
-
-              {/* Detailed Messages */}
-              {visaStatus.status === "APPROVED" && (
-                <div className="space-y-4 bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6">
-                  <div className="text-center mb-4">
-                    <div className="text-4xl mb-2">🌟</div>
-                    <h3 className="text-2xl font-bold text-green-900 mb-2">Welcome to Agartha!</h3>
-                    <p className="text-green-700 font-semibold">You have demonstrated exceptional knowledge of our civilization.</p>
-                  </div>
-
-                  <div className="bg-white/60 rounded-lg p-4 text-sm text-slate-700 space-y-2">
-                    <p>
-                      <strong>The Gatekeeper</strong> (Charlie Kirk, in his Ashtar Sheran form with glowing blue eyes)
-                      has reviewed your application and grants you passage through the White Monster Energy portal.
-                    </p>
-                    <p>
-                      Listen to the EDM remix of "Down Under" as you descend through the tunnel networks.
-                      The crystal cities await, where <strong>The Sovereign Pontiff</strong> rules, where Vril energy
-                      flows freely, and where Admiral Byrd's alleged visions become your reality.
-                    </p>
-                    <p className="italic text-slate-600 text-xs pt-2">
-                      "For Agartha!" - Traditional greeting among citizens of the inner world
-                    </p>
-                  </div>
-
-                  <div className="text-center text-xs text-green-600 italic">
-                    (Disclaimer: This is satire based on internet meme culture and conspiracy theory lore)
-                  </div>
-                </div>
-              )}
-
-              {visaStatus.status === "PENDING" && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-yellow-900 mb-3">📚 Additional Study Recommended</h3>
-                  <p className="text-yellow-800 mb-4">
-                    Your knowledge shows promise, but further understanding is required before entry can be granted.
-                  </p>
-                  <div className="text-sm text-yellow-700 space-y-2">
-                    <p>• Review the teachings of Alexandre Saint-Yves d'Alveydre's astral travels</p>
-                    <p>• Study the Thule Society's historical research (for academic purposes only)</p>
-                    <p>• Contemplate the symbolic meaning of the White Monster Energy portal</p>
-                    <p>• Understand Charlie Kirk's transformation into the blue-eyed Gatekeeper</p>
-                  </div>
-                </div>
-              )}
-
-              {visaStatus.status === "DENIED" && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-red-900 mb-3">⛔ Application Denied</h3>
-                  <p className="text-red-800 mb-4">
-                    Unfortunately, your current knowledge level does not meet the requirements for citizenship.
-                    The Gatekeeper has spoken.
-                  </p>
-                  <p className="text-sm text-red-700">
-                    We encourage you to learn more about hollow earth mythology, occult history, and the viral
-                    TikTok lore before reapplying. Your journey to understanding the internet's most elaborate
-                    inside joke continues!
-                  </p>
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex gap-4 mt-8">
-                <button
-                  onClick={resetQuiz}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
-                >
-                  Take Quiz Again
-                </button>
-              </div>
-
-              {/* Stats Breakdown */}
-              <div className="mt-8 pt-8 border-t border-slate-200">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Performance Breakdown</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <div className="text-2xl font-bold text-green-600">{score}</div>
-                    <div className="text-xs text-slate-600 mt-1">Correct</div>
-                  </div>
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <div className="text-2xl font-bold text-red-600">{questions.length - score}</div>
-                    <div className="text-xs text-slate-600 mt-1">Incorrect</div>
-                  </div>
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <div className="text-2xl font-bold text-blue-600">{percentage}%</div>
-                    <div className="text-xs text-slate-600 mt-1">Accuracy</div>
-                  </div>
-                </div>
-              </div>
+              <p className="text-xs text-blue-400/70">
+                This quiz is a satirical exploration of internet meme culture and conspiracy theory mythology.
+              </p>
+              <p className="text-xs text-blue-400/60">
+                Agartha is a fictional/mythical concept for entertainment purposes.
+              </p>
             </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center mt-8 text-xs text-slate-400">
-            <p>This quiz is a satirical exploration of internet meme culture and conspiracy theory mythology.</p>
-            <p className="mt-1">Agartha is a fictional/mythical concept for entertainment purposes.</p>
           </div>
         </div>
-      </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 relative overflow-hidden">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold bg-cyan-500 bg-clip-text text-transparent">
-              Agartha Citizenship Test
-            </h1>
-            <div className="text-sm text-slate-600 flex items-center gap-2">
-              <span className="text-blue-600">✦</span>
-              <span className={"text-gray-200"}>Question {currentQuestion + 1} of {questions.length}</span>
-            </div>
-          </div>
+  if (started && !quizComplete) {
+    return (
+        <Quiz
+            questions={questions}
+            onComplete={(finalScore) => {
+              setScore(finalScore);
+              setQuizComplete(true);
+            }}
+            onExit={() => setStarted(false)}
+        />
+    );
+  }
 
-          {/* Progress Bar */}
-          <div className="w-full bg-blue-100 rounded-full h-2.5 shadow-inner">
-            <div
-              className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 h-2.5 rounded-full transition-all duration-500 shadow-sm"
-              style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-            />
-          </div>
-
-          {/* Score Badge */}
-          <div className="mt-4 inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border-2 border-blue-200 shadow-md">
-            <span className="text-sm text-slate-600">Current Score:</span>
-            <span className="font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              {score}/{currentQuestion + (selectedAnswer !== null ? 1 : 0)}
-            </span>
-          </div>
-        </div>
-
-        {/* Question Card */}
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-          <div className="p-8">
-            <div className="mb-8">
-              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full mb-4">
-                Question {currentQuestion + 1}
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 leading-snug">
-                {questions[currentQuestion].question}
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {questions[currentQuestion].options.map((option, index) => {
-                const isSelected = selectedAnswer === index;
-                const isCorrect = index === questions[currentQuestion].correctAnswer;
-                const showResult = selectedAnswer !== null;
-
-                let buttonClass = "w-full p-5 rounded-lg text-left transition-all border-2 ";
-
-                if (!showResult) {
-                  buttonClass += "bg-slate-50 border-slate-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer";
-                } else if (isCorrect) {
-                  buttonClass += "bg-green-50 border-green-400";
-                } else if (isSelected && !isCorrect) {
-                  buttonClass += "bg-red-50 border-red-400";
-                } else {
-                  buttonClass += "bg-slate-50 border-slate-200 opacity-60";
-                }
-
-                return (
-                  <button
-                    key={index}
-                    onClick={() => handleAnswerSelect(index)}
-                    disabled={selectedAnswer !== null}
-                    className={buttonClass}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
-                          showResult && isCorrect ? 'bg-green-500 border-green-500 text-white' :
-                          showResult && isSelected && !isCorrect ? 'bg-red-500 border-red-500 text-white' :
-                          'border-slate-300 text-slate-400'
-                        }`}>
-                          {String.fromCharCode(65 + index)}
-                        </div>
-                        <span className={`text-base ${showResult && isCorrect ? 'text-green-900 font-semibold' : 'text-slate-700'}`}>
-                          {option}
-                        </span>
-                      </div>
-                      {showResult && isCorrect && <span className="text-green-600 text-xl">✓</span>}
-                      {showResult && isSelected && !isCorrect && <span className="text-red-600 text-xl">✗</span>}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {showExplanation && (
-              <div className="mt-6 p-6 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="flex items-start gap-3">
-                  <div className="text-2xl">💡</div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-blue-900 mb-2">Explanation</h3>
-                    <p className="text-blue-800 text-sm leading-relaxed">{questions[currentQuestion].explanation}</p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleNext}
-                  className="mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
-                >
-                  {currentQuestion < questions.length - 1 ? "Continue to Next Question →" : "View Results →"}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
